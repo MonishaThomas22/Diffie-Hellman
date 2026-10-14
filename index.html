@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diffie-Hellman Key Exchange Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Diffie-Hellman Key Exchange</h1>
+        <p>Interactive simulator with calculations and exceptional-case testing</p>
+    </header>
+
+    <main class="container">
+
+        <!-- 1. Key Exchange Simulator -->
+        <section class="panel">
+            <h2>1. Key Exchange Simulator</h2>
+            <p class="muted">Enter the public parameters and private keys.</p>
+
+            <div class="input-grid">
+                <div class="field">
+                    <label for="q">Prime number (q)</label>
+                    <input type="number" id="q" value="23">
+                </div>
+
+                <div class="field">
+                    <label for="alpha">Primitive root (α)</label>
+                    <input type="number" id="alpha" value="5">
+                </div>
+
+                <div class="field">
+                    <label for="alicePrivate">Alice's private key (XA)</label>
+                    <input type="number" id="alicePrivate" value="6">
+                </div>
+
+                <div class="field">
+                    <label for="bobPrivate">Bob's private key (XB)</label>
+                    <input type="number" id="bobPrivate" value="15">
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button id="calculateBtn">Calculate Keys</button>
+                <button id="randomBtn" class="secondary">Generate Random Keys</button>
+                <button id="resetBtn" class="danger">Reset</button>
+            </div>
+
+            <div id="errorMessage" class="message error" role="alert" hidden></div>
+            <div id="successMessage" class="message success" role="status" hidden></div>
+
+            <div id="results" hidden>
+                <h3>Calculation Results</h3>
+
+                <div class="result-grid">
+                    <div class="result-card">
+                        <span>Alice's public key (YA)</span>
+                        <strong id="alicePublic">-</strong>
+                    </div>
+
+                    <div class="result-card">
+                        <span>Bob's public key (YB)</span>
+                        <strong id="bobPublic">-</strong>
+                    </div>
+
+                    <div class="result-card">
+                        <span>Alice's shared key (KA)</span>
+                        <strong id="aliceSecret">-</strong>
+                    </div>
+
+                    <div class="result-card">
+                        <span>Bob's shared key (KB)</span>
+                        <strong id="bobSecret">-</strong>
+                    </div>
+                </div>
+
+                <div id="keyMatch" class="match-message"></div>
+            </div>
+        </section>
+
+        <!-- 2. Step-by-Step Calculation -->
+        <section class="panel">
+            <h2>2. Step-by-Step Calculation</h2>
+            <p class="muted">Calculate valid keys to explore each step.</p>
+
+            <div class="progress-track">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <p id="stepCounter" class="step-counter">Step 0 of 5</p>
+            <h3 id="stepTitle">Ready to calculate</h3>
+            <p id="stepDescription">Enter valid values and click Calculate Keys.</p>
+
+            <div id="stepCalculation" class="formula">No calculation yet.</div>
+            <p id="stepExplanation" class="muted"></p>
+
+            <div class="button-row">
+                <button id="previousStepBtn" class="secondary" disabled>Previous</button>
+                <button id="nextStepBtn" disabled>Next Step</button>
+            </div>
+        </section>
+
+        <!-- 3. Test Cases -->
+        <section class="panel full-width">
+            <h2>3. Test Cases and Exceptional Handling</h2>
+            <p class="muted">
+                Test valid calculations, invalid inputs, non-prime q,
+                invalid primitive roots, and shared-key verification.
+            </p>
+
+            <div class="button-row">
+                <button id="runTestsBtn">Run All Test Cases</button>
+                <button id="clearTestsBtn" class="secondary">Clear Test Results</button>
+            </div>
+
+            <div id="testSummary" class="test-summary" hidden></div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Test Case</th>
+                            <th>Input</th>
+                            <th>Expected Result</th>
+                            <th>Actual Result</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="testResults">
+                        <tr>
+                            <td colspan="6" class="empty-table">
+                                Click "Run All Test Cases" to begin.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Security note retained -->
+        <section class="security-note">
+            <strong>Security note:</strong>
+            This is an educational simulator using small numbers.
+            Do not use it to protect real communications.
+        </section>
+
+    </main>
+
+    <footer>
+        Diffie-Hellman Key Exchange Simulator | Educational Project
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
